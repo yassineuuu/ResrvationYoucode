@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.password">1995478632</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/Gestion_Reservation</property>
+        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <property name="hibernate.current_session_context_class">thread</property>
+        
+         <property name="hibernate.hbm2ddl.auto">update</property>
+
+	     <mapping class="org.example.models.Utilisateur"></mapping>
+	     <mapping class="org.example.models.Admin"></mapping>
+	     <mapping class="org.example.models.Apprenant"></mapping>
+	     <mapping class="org.example.models.UtilisateurRole"></mapping>
+   	     <mapping class="org.example.models.TypeReservation"></mapping>
+   	     <mapping class="org.example.models.Reservation"></mapping>
+   	     <mapping class="org.example.models.PreInscription"></mapping>
+	     
+    </session-factory>
+</hibernate-configuration>
