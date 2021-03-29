@@ -8,7 +8,9 @@ import org.example.models.UtilisateurRole;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class ApprenantDaoImp implements ApprenantDao<Apprenant> {
 
 	/*********************

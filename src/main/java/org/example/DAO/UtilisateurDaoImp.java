@@ -8,7 +8,9 @@ import org.example.models.Utilisateur;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class UtilisateurDaoImp implements UtilisateurDao<Utilisateur> {
 
 	@Override

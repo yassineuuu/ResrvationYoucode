@@ -11,17 +11,23 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.management.relation.Role;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.example.DAO.AdminDao;
 import org.example.DAO.AdminDaoImp;
+import org.example.DAO.ApprenantDao;
 import org.example.DAO.ApprenantDaoImp;
 import org.example.DAO.PreInscDaoImp;
+import org.example.DAO.ReservationDao;
 import org.example.DAO.ReservationImp;
+import org.example.DAO.RoleDao;
 import org.example.DAO.RoleDaoImp;
 import org.example.DAO.TypeReservationImp;
+import org.example.DAO.UtilisateurDao;
 import org.example.DAO.UtilisateurDaoImp;
 import org.example.dbConnection.HibernateUtil;
 import org.example.models.Admin;
@@ -36,6 +42,8 @@ import org.example.repository.ReservationHistory;
 import org.example.repository.TypeReservationRepo;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -44,13 +52,22 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class HomeController {
-	UtilisateurDaoImp utilisateurDaoImp = new UtilisateurDaoImp();
-	AdminDaoImp adminDaoImp = new AdminDaoImp();
-	ApprenantDaoImp apprenantDaoImp = new ApprenantDaoImp();
-	RoleDaoImp roleImp = new RoleDaoImp();
-	TypeReservationRepo tri = new TypeReservationRepo();
-	ReservationImp reserv = new ReservationImp();
-	PreInscDaoImp preInscription = new PreInscDaoImp();
+	@Autowired
+	private UtilisateurDao<Utilisateur> utilisateurDaoImp;
+	@Autowired
+	private AdminDao<Admin> adminDaoImp;
+	@Autowired
+	@Qualifier("apprenantDaoImp")
+	private ApprenantDao<Apprenant> apprenantDaoImp;
+	@Autowired
+	private RoleDao<Role> roleImp;
+	
+	private TypeReservationRepo tri = new TypeReservationRepo();
+	@Autowired
+	private ReservationDao<Reservation> reserv;
+	@Autowired
+	@Qualifier("preInscDaoImp")
+	private ApprenantDao<PreInscription> preInscription;
 
 	
 	
@@ -76,7 +93,13 @@ public class HomeController {
 			return userGet(utilisateur, request, response, model);
 			
 		}else {
+			if (request.getSession().getAttribute("id") != null) {
+				Utilisateur utilisateur = utilisateurDaoImp.getById((Long) request.getSession().getAttribute("id"));
 
+				return userGet(utilisateur, request, response, model);
+			} else {
+
+			
 			String user = request.getParameter("user");
 			String password = request.getParameter("pass");
 
@@ -109,15 +132,15 @@ public class HomeController {
 			}
 			
 			
-
+			}
 
 	}
 	}
 	@RequestMapping(value = "/logout")
     public String logout(HttpServletRequest request) {
         System.out.println("logout()");
-        HttpSession httpSession = request.getSession();
-        httpSession.invalidate();
+        request.getSession().setMaxInactiveInterval(0);
+        request.getSession().invalidate();
         return "../../index";
     }
 	

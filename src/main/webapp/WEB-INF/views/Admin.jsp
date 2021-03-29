@@ -10,9 +10,19 @@
     <title>Admin</title>
 </head>
 <body>
+<%
+//delete cash
+response.setHeader("Cache-Control","no-cache, no-store");
+response.setHeader("Pragma","no-cache");
+response.setDateHeader ("Expires", 0);
 
+    //if sesion is null redirection
+    if (request.getSession().getAttribute("id") == null){
+        response.sendRedirect("index.jsp");
+    }
+%>
 <header>
-    <h1>Admin</h1>
+    <h1>Admin  ${admin.username}</h1>
     <a href="#">Acceuil</a>
     <a href="History">Historique Des Résérvations</a>
     <a href="#">Demandes D'inscription</a>
@@ -84,6 +94,8 @@
           <th>Nom</th>
           <th>Date</th>
           <th>Type de Résérvation</th>
+          <th>Confirmation</th>
+          
         </tr>
       </thead>
     </table>
@@ -97,7 +109,7 @@
                 <td>${ reservation.id_apprenant.nom } ${ reservation.id_apprenant.prenom }</td>
                 <td>${reservation.date}</td>
                 <td>${reservation.type_reservation.type_reservation}</td>
-                
+                <td>${reservation.confirmé}</td>
        </tr>
         </c:forEach> 
         

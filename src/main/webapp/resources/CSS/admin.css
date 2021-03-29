@@ -6,23 +6,22 @@
     font-family: Poppins;
 }
 body{
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+	display: grid;
+	grid-template-columns:  1fr 4fr;
     font-family: Poppins;
 }
 header{
-	width: 15vw;
-    text-align: center;
-    background-color: white;
-    background-color: gainsboro;
-    display: flex;
-    flex-direction: column;
+    background-color: #3d3c42;
+	display: flex;
+	flex-direction: column;
     height: 100vh;
+    padding: 3rem;
 
 }
+header>a{
+	color: white;
+}
 main{
-	width: 85vw;
     padding: 5rem;
     background: url("../images/bg4.jpg");
     background-size: cover ;
@@ -254,7 +253,6 @@ h1{
   color: #fff;
   text-transform: uppercase;
   font-weight: 300;
-  text-align: center;
   margin-bottom: 15px;
 }
 table{

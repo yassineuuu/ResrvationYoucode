@@ -7,7 +7,9 @@ import org.example.models.TypeReservation;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class TypeReservationImp implements TypeReservtionDao<TypeReservation> {
 
 	@Override
