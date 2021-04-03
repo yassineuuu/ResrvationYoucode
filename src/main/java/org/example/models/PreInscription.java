@@ -23,8 +23,9 @@ public class PreInscription implements Serializable{
 	private String tel;
 	
 	private String nom;
-
 	private String prenom;
+	
+	private String statu;
 
 	
 	/*************
@@ -40,6 +41,7 @@ public class PreInscription implements Serializable{
 		this.tel = tel;
 		this.nom=nom;
 		this.prenom=prenom;
+		this.statu = "En attent";
 	}
 
 	
@@ -98,6 +100,14 @@ public class PreInscription implements Serializable{
 
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
+	}
+
+	public String getStatu() {
+		return statu;
+	}
+
+	public void setStatu(String statu) {
+		this.statu = statu;
 	}
 	
 	

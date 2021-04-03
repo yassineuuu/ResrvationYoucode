@@ -1,5 +1,10 @@
 package org.example.repository;
 
+import java.security.MessageDigest;
+import java.util.Iterator;
+
+import javax.mail.Message;
+
 import org.example.dbConnection.HibernateUtil;
 import org.example.models.Utilisateur;
 import org.hibernate.Session;
@@ -24,4 +29,22 @@ public class Login {
         return utilisateur;
 	}
 
+	public static String HashPass(String password) {
+		try {
+			MessageDigest messageDigest  = MessageDigest.getInstance("MD5");
+			messageDigest.update(password.getBytes());
+			byte[] result = messageDigest.digest();
+			StringBuilder stringBuilder = new StringBuilder();
+			for (byte b : result) {
+				stringBuilder.append(String.format("%02x", b));
+				
+			}
+			return stringBuilder.toString();
+			
+		} catch (Exception e) {
+				e.printStackTrace();
+		}
+		return "";
+	}
+	
 }

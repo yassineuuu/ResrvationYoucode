@@ -1,3 +1,4 @@
+<%@page import="java.time.LocalDate"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -36,7 +37,7 @@ response.setDateHeader ("Expires", 0);
 			<option value="Weekend">Weekend</option>
 			<option value="Normal">Normal</option>
 			</select><br><br>
-			<input class="form-control mr-sm-2" type="date" name="date"><br><br>
+			<input class="form-control mr-sm-2" type="date" name="date" min="<%= LocalDate.now() %>"   max="${sunday}"><br><br>
 
 			<input type="submit" class="btn btn-success">
 		</form>

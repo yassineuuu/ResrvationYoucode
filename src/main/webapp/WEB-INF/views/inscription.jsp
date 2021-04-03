@@ -69,6 +69,12 @@
                     <input class="input100" type="password" name="mdp" placeholder="Mot de passe">
                     <span class="focus-input100" data-placeholder="&#xf191;"></span>
                 </div>
+                
+                <div class="wrap-input100 validate-input" data-validate="Vérifié Le Mot de passe">
+                    <input class="input100" type="password" name="Vmdp" placeholder="Vérification Mot de passe">
+                    <span class="focus-input100" data-placeholder="&#xf191;"></span>
+                </div>
+                
                 <div class="contact100-form-checkbox">
                     <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
                     <label class="label-checkbox100" for="ckb1">

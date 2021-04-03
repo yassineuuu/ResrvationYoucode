@@ -1,5 +1,6 @@
 package org.example.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.example.dbConnection.HibernateUtil;
@@ -58,4 +59,28 @@ public class ReservationHistory {
         
         return reservations;
 	}
+	
+	public static List<Reservation> getByDate(Apprenant id_utilisateur, LocalDate date) {
+		//Creat a list where we can put the objects
+		List<Reservation> reservations;
+		
+		//Start Session
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        
+      //Begin Transaction
+        Transaction ts = session.beginTransaction();
+        
+      //Execute the opération
+        Query<Reservation> query = session.createQuery("SELECT R From Reservation R WHERE R.id_apprenant= :id AND R.date = :date ORDER BY R.date DESC",Reservation.class).setParameter("id", id_utilisateur).setParameter("date", date);
+        reservations = query.getResultList();
+        
+      //Commit the Transaction
+        ts.commit();
+        
+      //close the Session
+        session.close();
+        
+        return reservations;
+	}
+	
 }
